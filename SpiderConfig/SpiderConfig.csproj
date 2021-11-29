@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="obj\Debug\net6.0\SpiderConfig.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Debug\net6.0\SpiderConfig.assets.cache" />
+      <Content Include="obj\Debug\net6.0\SpiderConfig.GeneratedMSBuildEditorConfig.editorconfig" />
+      <Content Include="obj\project.assets.json" />
+      <Content Include="obj\project.nuget.cache" />
+      <Content Include="obj\project.packagespec.json" />
+      <Content Include="obj\rider.project.restore.info" />
+      <Content Include="obj\SpiderConfig.csproj.nuget.dgspec.json" />
+      <Content Include="obj\SpiderConfig.csproj.nuget.g.props" />
+      <Content Include="obj\SpiderConfig.csproj.nuget.g.targets" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+      <Compile Include="obj\Debug\net6.0\SpiderConfig.AssemblyInfo.cs" />
+      <Compile Include="obj\Debug\net6.0\SpiderConfig.GlobalUsings.g.cs" />
+      <Compile Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="obj\Debug\net6.0\ref" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="obj\**" />
+    </ItemGroup>
+
+</Project>
