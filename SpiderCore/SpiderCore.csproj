@@ -8,15 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="obj\**" />
+        <Compile Remove="obj\**"/>
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Remove="obj\**" />
+        <EmbeddedResource Remove="obj\**"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="obj\**" />
+        <None Remove="obj\**"/>
     </ItemGroup>
 
 </Project>
