@@ -12,8 +12,9 @@ namespace SimpleSpiderApi.Controllers
     {
         private static readonly string[] Summaries =
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching",
-            "SukeBan"
+            "Freezing", "Bracing", "Chilly", "Cool", 
+            "Mild", "Warm", "Balmy", "Hot",
+            "Sweltering", "Scorching", "SukeBan"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
