@@ -59,15 +59,7 @@ After success data will be processed and analyzed, storage and export can be car
 
 ### `SpiderConfig` 来提供爬虫工程的配置，配置存放在数据库中存储
 
-```mermaid
-graph
-	B(SpiderCore) -->|根据工程查询|A{配置数据库}-->|返回配置| B
-    B --> |配置解析 获得startUrl 并交由Dispatcher处理成request| C{Dispatcher}
-    D[Downloader] --> |获取一个Request| C
-    C -->|返回Request| D
-    D -->|下载完成之后将response由SpiderCore转交给Processor| B
-```
-
+![avatar](Images/SimpleSpiderArchitecture.jpg)
 TODO
 
 1. **工程配置**的数据结构
@@ -86,3 +78,10 @@ TODO
 ----
 
 ### `SpiderCore` 根据流程配置执行爬虫的
+
+
+
+
+
+
+
