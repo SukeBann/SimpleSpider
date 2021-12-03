@@ -27,31 +27,32 @@ After success data will be processed and analyzed, storage and export can be car
         2. 从左到右优先级递增
     2. 爬虫工程的配置
         1. 控制整个爬虫工程的流程和内容提取结果,以及数据的梳理方式
-        2. SpiderConfig经SpiderCore交由爬虫核心解析和运用
+        2. `SpiderConfig`经`SpiderCore`交由`Processor`解析和运用
 2. SpiderCore
-    1. 框架核心,根据SpiderConfig协调各组件(包括中间件)之间的运行
+    1. 框架核心,根据`SpiderConfig`协调各组件(包括`中间件`)之间的运行
 3. Dispatcher
-    1. 根据SpiderCore 传达的URL(分为初始URL以及后续获取到的) 生成Request 并加入下载队列
+    1. 根据`SpiderCore` 传达的`URL`(分为`初始URL`以及后续获取到需要继续跟进的) 生成`Request` `排重`后加入队列
 4. Downloader
-    1. 向调度器请求一个通过下载中间件的Request
-    2. 成功之后返回一个通过中间件(也可以不经过)的Response 最后交给SpiderCore
+    1. `SpiderCore`分配一个通过`下载中间件(request方向)`的`Request`给`DownLoader`
+    2. 请求成功之后返回一个通过`下载中间件(response方向)`的`Response` 最后交给`SpiderCore`，请求失败则返回`Request`
+    3. 只有配置中设定了要使用的`中间件`才会通过`中间件`通讯，其他情况直接和`DownLoader`交互
 5. Processor
-    1. 从SpiderCore获取SpiderConfig根据配置解析内容或者要继续跟进的URL
-        1. 根据SpiderConfig的配置规则来提取内容和链接
-            1. 配置规则包含rule以及中间件列表
-            2. 流程为Downloader --> middlewares -->解析器
-        2. 解析出来的内容 放到Item中存储 并由SpiderCore转交给Pipeline
-        3. 如果解析出需要跟进的URL则由SpiderCore转交给Dispatcher继续跟进
+    1. 从`SpiderCore`获取`SpiderConfig`根据配置解析内容或者要继续跟进的URL
+        1. 根据`SpiderConfig`的配置规则来提取内容和链接
+            1. 配置规则包含`rule`以及中间件列表
+            2. 流程为`Downloader` --> `middlewares` --> `Processor`
+        2. 解析出来的内容 放到`Item`中存储 并由`SpiderCore`转交给`Pipeline`
+        3. 如果解析出需要跟进的`URL`则由`SpiderCore`转交给`Dispatcher`继续跟进
 6. Pipeline
-    1. SpiderCore将数据处理配置和Item传入Pipeline
-        1. Pipeline根据配置处理Item
-            1. 清理
-            2. 验证
-            3. 持久化等操作
-7. Api
-    1. GUI以及远程控制的api
-8. GUI
-    1. 可视化爬虫工程配置，操作,监控界面
+7. `SpiderCore`将数据处理配置和`Item`传入`Pipeline`
+   1. ` Pipeline`根据配置处理`Item`
+      1. 清理
+      9. 验证
+      10. 持久化等操作
+11. Api
+     1. GUI以及远程控制的api
+12. GUI
+     1. 可视化爬虫工程配置，操作,监控界面
 
 # 设计思路
 
