@@ -17,21 +17,37 @@ After success data will be processed and analyzed, storage and export can be car
 
 ---------
 
+
+
 ### module
 
 1. SpiderConfig
-    1. 爬虫工程的配置控制整个爬虫工程的流程和内容提取结果,以及数据的梳理方式
-2. Database
-    1. 数据以及工程配置的存储
-3. SpiderCore
-   1. 爬虫核心 内容下载, 使用中间件处理内容 
-4. MiddlewareDispatcher
-    2. 中间件调度器，来调度中间件与原生组件运行
-        1. 原生组件指爬虫核心，数据提取器，数据清洗器
-5. DataParse
-    1. 数据的提取解析
-6. DataCarding
-    1. 数据的清洗
+    1. 爬虫设置
+        1. 分为全局设置,工程设置,单个爬虫的设置
+        2. 从左到右优先级递增
+    2. 爬虫工程的配置
+        1. 控制整个爬虫工程的流程和内容提取结果,以及数据的梳理方式
+        2. SpiderConfig经SpiderCore交由爬虫核心解析和运用
+2. SpiderCore
+    1. 框架核心,根据SpiderConfig协调各组件(包括中间件)之间的运行
+3. Dispatcher
+    1. 根据SpiderCore 传达的URL(分为初始URL以及后续获取到的) 生成Request 并加入下载队列
+4. Downloader
+    1. 向调度器请求一个通过下载中间件的Request
+    2. 成功之后返回一个通过中间件(也可以不经过)的Response 最后交给SpiderCore
+5. Processor
+    1. 从SpiderCore获取SpiderConfig根据配置解析内容或者要继续跟进的URL
+        1. 根据SpiderConfig的配置规则来提取内容和链接
+            1. 配置规则包含rule以及中间件列表
+            2. 流程为Downloader --> middlewares -->解析器
+        2. 解析出来的内容 放到Item中存储 并由SpiderCore转交给Pipeline
+        3. 如果解析出需要跟进的URL则由SpiderCore转交给Dispatcher继续跟进
+6. Pipeline
+    1. SpiderCore将数据处理配置和Item传入Pipeline
+        1. Pipeline根据配置处理Item
+            1. 清理
+            2. 验证
+            3. 持久化等操作
 7. Api
     1. GUI以及远程控制的api
 8. GUI
@@ -43,42 +59,14 @@ After success data will be processed and analyzed, storage and export can be car
 
 ### `SpiderConfig` 来提供爬虫工程的配置，配置存放在数据库中存储
 
-1. **工程配置**存储在`配置数据库`中
-2. 程序通过`配置查询器`取得配置
-3. **工程配置**通过`配置解析器`决定爬虫流程，内容的提取规则，以及数据的清洗规则， 以及使用了哪些`中间件`
-4. **工程配置**传入`中间件调度器`，根据**中间件配置**来调度所需的`中间件`和`原生组件`
-5. `爬虫核心`根据**工程配置**爬取数据
-    1. 流程必须要可扩展
-        1. 比如怎么提取链接（是否翻页， 是否滚动）
-        2. 流程中可以添加其他的功能
-        3. 以上两点个人认为应该有`中间件`来实现，所以才称为扩展
-    2. 从h5源码提取内容 或者是从xhr中抓包数据
-
-```mermaid
-graph LR
-B(配置查询器) -->|根据工程查询|A{配置数据库}-->|返回配置| B
-    B --> C{配置解析器} --> D[中间件调度器]
-    D --> H(中间件)
-    H -->|任务流程| E[爬虫核心]
-    H -->|内容提取规则| F[内容提取器]
-    E --> F --> E
-    H -->|数据清洗规则| G(数据清理器)
-    F --> G
-```
-TODO
-1. **工程配置**的数据结构
-   1. 公共配置(大多数情况下通用的)
-   2. 自定义配置
-2. 配置`配置解析器`的运作方式
-3. `爬虫核心`的运作方式（怎么支持从配置决定流程）
-    1. 中间件支持
-4. `内容提取器`的运作方式
-    1. 中间件支持
-5. `数据清洗器`的运作方式
-    1. 中间件支持
-6. `中间件`扩展接口规范`中间件调度器`
-    1. 由一个`中间件调度器`来调度`中间件`和`原生组件`运行
-
+![avatar](Images/SimpleSpiderArchitecture.jpg)
 ----
 
 ### `SpiderCore` 根据流程配置执行爬虫的
+
+
+
+
+
+
+
