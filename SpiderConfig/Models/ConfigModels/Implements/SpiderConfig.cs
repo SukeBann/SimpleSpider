@@ -4,9 +4,9 @@ using SpiderConfig.Models.ConfigModels.Contracts;
 
 namespace SpiderConfig.Models.ConfigModels.Implements
 {
-    public class ProcessConfig:IProgressConfig
+    public class SpiderConfig:ISpiderConfig
     {
-        public ProcessConfig(string actionName, ActionTypeEnum actionTypeEnum)
+        public SpiderConfig(string actionName, ActionTypeEnum actionTypeEnum)
         {
             ActionName = actionName;
             ActionTypeEnum = actionTypeEnum;

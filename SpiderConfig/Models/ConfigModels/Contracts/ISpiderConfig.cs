@@ -6,7 +6,7 @@ namespace SpiderConfig.Models.ConfigModels.Contracts
     /// <summary>
     /// 定义一串流程中的一个操作
     /// </summary>
-    public interface IProgressConfig
+    public interface ISpiderConfig
     {
         /// <summary>
         /// 操作名称

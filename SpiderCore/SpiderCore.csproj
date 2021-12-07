@@ -4,19 +4,32 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>Core</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="obj\**"/>
+        <Compile Remove="obj\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Remove="obj\**"/>
+        <EmbeddedResource Remove="obj\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="obj\**"/>
+        <None Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Implement" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SpiderDownloader\SpiderDownloader.csproj" />
+      <ProjectReference Include="..\SpiderPipeline\SpiderPipeline.csproj" />
+      <ProjectReference Include="..\SpiderLog\SpiderLog.csproj" />
+      <ProjectReference Include="..\SpiderBase\SpiderBase.csproj" />
+      <ProjectReference Include="..\SpiderConfig\SpiderConfig.csproj" />
+      <ProjectReference Include="..\SpiderDispatcher\SpiderDispatcher.csproj" />
+      <ProjectReference Include="..\SpiderProcessor\SpiderProcessor.csproj" />
     </ItemGroup>
 
 </Project>
