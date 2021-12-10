@@ -1,6 +1,6 @@
 namespace SpiderBase.Contract.URLModels
 {
-    public interface ISpiderRequest
+    public interface ISpiderResponse
     {
         
     }
