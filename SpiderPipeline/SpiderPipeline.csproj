@@ -7,19 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="bin\Debug\net6.0\ref" />
+        <Folder Include="bin\Debug\net6.0\ref" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="bin\**" />
+        <Compile Remove="bin\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Remove="bin\**" />
+        <EmbeddedResource Remove="bin\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="bin\**" />
+        <None Remove="bin\**" />
     </ItemGroup>
 
 </Project>
