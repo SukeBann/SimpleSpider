@@ -24,9 +24,9 @@ namespace SpiderBase.Contract.URLModels
         public bool IsRequest { get; }
         
         /// <summary>
-        /// 是否为Response
+        /// 是否为成功的Response
         /// </summary>
-        public bool IsResponse { get; }
+        public bool IsResponse { get; set; }
         
         /// <summary>
         /// 封装的请求
@@ -37,8 +37,5 @@ namespace SpiderBase.Contract.URLModels
         /// 请求成功的响应
         /// </summary>
         public ISpiderResponse? SpiderResponse { get; }
-        
-        
-        
     }
 }

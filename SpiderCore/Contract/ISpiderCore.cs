@@ -58,9 +58,7 @@ namespace SpiderCore.Contract
         /// 初始化ISpiderCore
         /// </summary>
         public void InitSpiderCore();
-        
-        
-        
+
     }
 
 }

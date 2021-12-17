@@ -7,7 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ProjectShared\ProjectShared.csproj" />
       <ProjectReference Include="..\SpiderBase\SpiderBase.csproj" />
+      <ProjectReference Include="..\SpiderConfig\SpiderConfig.csproj" />
     </ItemGroup>
 
 </Project>

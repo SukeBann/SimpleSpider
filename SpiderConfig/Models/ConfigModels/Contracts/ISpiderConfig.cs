@@ -1,28 +1,32 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
 using SpiderConfig.Enum;
 
 namespace SpiderConfig.Models.ConfigModels.Contracts
 {
     /// <summary>
-    /// 定义一串流程中的一个操作
+    /// 爬虫工程配置
     /// </summary>
     public interface ISpiderConfig
     {
         /// <summary>
-        /// 操作名称
+        /// 链接调度器配置
         /// </summary>
-        public string ActionName { get; set; }
+        public ISpiderDispatcherConfig SpiderDispatcherConfig { get; set; }
         
         /// <summary>
-        /// 操作类型，用于操作记录展示，具体的操作行为在ActionBegin传入的action定义
-        /// </summary> 
-        public ActionTypeEnum ActionTypeEnum { get; set; }
-
-        /// <summary>
-        /// 开始操作
+        /// 内容处理器配置
         /// </summary>
-        /// <param name="func">具体怎么操作文本内容</param>
-        /// <returns></returns>
-        public string ActionBegin(Func<string> func);
+        public ISpiderProcessorConfig SpiderProcessorConfig { get; set; }
+        
+        /// <summary>
+        /// 下载器配置
+        /// </summary>
+        public ISpiderDownloaderConfig SpiderDownloaderConfig { get; set; }
+        
+        /// <summary>
+        /// 数据管道配置
+        /// </summary>
+        public ISpiderPipelineConfig SpiderPipelineConfig { get; set; }
     }
 }

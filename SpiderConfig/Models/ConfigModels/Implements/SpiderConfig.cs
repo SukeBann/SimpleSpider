@@ -6,19 +6,20 @@ namespace SpiderConfig.Models.ConfigModels.Implements
 {
     public class SpiderConfig:ISpiderConfig
     {
-        public SpiderConfig(string actionName, ActionTypeEnum actionTypeEnum)
+        public SpiderConfig(ISpiderDispatcherConfig spiderDispatcherConfig, 
+            ISpiderProcessorConfig spiderProcessorConfig, 
+            ISpiderDownloaderConfig spiderDownloaderConfig, 
+            ISpiderPipelineConfig spiderPipelineConfig)
         {
-            ActionName = actionName;
-            ActionTypeEnum = actionTypeEnum;
+            SpiderDispatcherConfig = spiderDispatcherConfig;
+            SpiderProcessorConfig = spiderProcessorConfig;
+            SpiderDownloaderConfig = spiderDownloaderConfig;
+            SpiderPipelineConfig = spiderPipelineConfig;
         }
 
-        public string ActionName { get; set; }
-        
-        public ActionTypeEnum ActionTypeEnum { get; set; }
-        
-        public string ActionBegin(Func<string> action)
-        {
-            return action.Invoke();
-        }
+        public ISpiderDispatcherConfig SpiderDispatcherConfig { get; set; }
+        public ISpiderProcessorConfig SpiderProcessorConfig { get; set; }
+        public ISpiderDownloaderConfig SpiderDownloaderConfig { get; set; }
+        public ISpiderPipelineConfig SpiderPipelineConfig { get; set; }
     }
 }
